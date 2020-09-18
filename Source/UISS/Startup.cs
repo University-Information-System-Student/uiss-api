@@ -6,18 +6,25 @@ namespace UISS
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+    using GlobalConstants.ApplicationSettings;
+
     public class Startup
     {
+        private readonly IConfiguration configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var applicationSettings = configuration
+                .GetSection(nameof(ApplicationSettings));
+
+            services.Configure<ApplicationSettings>(applicationSettings);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
