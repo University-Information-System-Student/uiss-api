@@ -24,6 +24,9 @@
         public bool IsActive { get; set; }
 
         [BsonRequired]
+        public bool IsActivatedCode { get; set; }
+
+        [BsonRequired]
         public DateTime GeneratedCodeOn { get; set; }
 
         public DateTime? RegisteredOn { get; set; }

@@ -5,14 +5,24 @@
 
     using RequestModels.Account;
     using ResponseModels.Account;
+    using Services.Contracts;
 
     [ApiController]
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
+        private readonly IUserService userService;
+
+        public AccountController(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
         [HttpPost("Login")]
         public async Task<ActionResult<LoginResponseModel>> LoginAsync(LoginRequestModel request)
         {
+            userService.GetUserByUserNameAsync("sd");
+
             // TODO: Implement LoginAsync Action
 
             throw new System.NotImplementedException();
