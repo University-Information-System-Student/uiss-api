@@ -8,4 +8,8 @@
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UISS.Data\UISS.Data.csproj" />
+  </ItemGroup>
+
 </Project>
