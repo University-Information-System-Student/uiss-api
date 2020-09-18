@@ -9,8 +9,6 @@
     using Models.User;
     using Data.Contracts;
     using Data.Models.Identity;
-    using MongoDB.Bson;
-    using System.Collections.Generic;
 
     public class UserService : IUserService
     {
