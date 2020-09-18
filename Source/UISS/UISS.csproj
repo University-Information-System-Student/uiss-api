@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UISS.Data\UISS.Data.csproj" />
     <ProjectReference Include="..\UISS.GlobalConstants\UISS.GlobalConstants.csproj" />
+    <ProjectReference Include="..\UISS.Security\UISS.Security.csproj" />
     <ProjectReference Include="..\UISS.Services\UISS.Services.csproj" />
   </ItemGroup>
 

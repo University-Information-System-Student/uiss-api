@@ -7,6 +7,7 @@
     using RequestModels.Account;
     using ResponseModels.Account;
     using Services.Contracts;
+    using UISS.Security;
 
     [ApiController]
     [Route("api/[controller]")]
@@ -49,7 +50,8 @@
                 return Ok(response);
             }
 
-            var hashedPassword = "passss124333343434";
+            var hashedPassword = PasswordHasher
+                .HashPassword(request.Password);
 
             await this.userService
                 .UpdateUserToRegistered(user.Id, request.Username, hashedPassword, request.Email);
