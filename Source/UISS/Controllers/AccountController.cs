@@ -1,7 +1,8 @@
 ﻿namespace UISS.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
+    using System;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
 
     using RequestModels.Account;
     using ResponseModels.Account;
@@ -21,8 +22,6 @@
         [HttpPost("Login")]
         public async Task<ActionResult<LoginResponseModel>> LoginAsync(LoginRequestModel request)
         {
-            userService.GetUserByUserNameAsync("sd");
-
             // TODO: Implement LoginAsync Action
 
             throw new System.NotImplementedException();
@@ -31,9 +30,33 @@
         [HttpPost("Register")]
         public async Task<ActionResult<RegisterResponseModel>> RegisterAsync(RegisterRequestModel request)
         {
-            // TODO: Implement RegisterAsync Action
+            var response = new RegisterResponseModel();
 
-            throw new System.NotImplementedException();
+            var user = await this.userService
+                .GetUserByRegistrationCodeAsync(request.RegistrationCode);
+
+            if (Object.Equals(user, null))
+            {
+                response.Status = -1;
+                response.Message = "Invalid Registration Code.";
+                return Ok(response);
+            }
+
+            if (user.IsActivatedCode)
+            {
+                response.Status = -2;
+                response.Message = "The Registration Code Is Taken.";
+                return Ok(response);
+            }
+
+            var hashedPassword = "passss124333343434";
+
+            await this.userService
+                .UpdateUserToRegistered(user.Id, request.Username, hashedPassword, request.Email);
+
+            response.Status = 1;
+            response.Message = "Success.";
+            return Ok(response);
         }
 
         [HttpPost("ForgotPassword")]

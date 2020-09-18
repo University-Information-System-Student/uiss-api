@@ -9,5 +9,7 @@
         public string HashedPassword { get; set; }
 
         public int UserRole { get; set; }
+
+        public bool IsActivatedCode { get; set; }
     }
 }
