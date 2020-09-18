@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UISS.Services", "UISS.Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UISS.Data", "UISS.Data\UISS.Data.csproj", "{96331235-41D5-46B8-A32D-56EAFBCA55FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UISS.GlobalConstants", "UISS.GlobalConstants\UISS.GlobalConstants.csproj", "{8995DB21-6A87-4E9C-B6B8-76F1A66EE0A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{96331235-41D5-46B8-A32D-56EAFBCA55FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96331235-41D5-46B8-A32D-56EAFBCA55FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96331235-41D5-46B8-A32D-56EAFBCA55FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8995DB21-6A87-4E9C-B6B8-76F1A66EE0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8995DB21-6A87-4E9C-B6B8-76F1A66EE0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8995DB21-6A87-4E9C-B6B8-76F1A66EE0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8995DB21-6A87-4E9C-B6B8-76F1A66EE0A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
