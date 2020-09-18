@@ -37,6 +37,7 @@ namespace UISS
 
             services.AddSingleton<IIdentityDbContext, IdentityDbContext>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IJwtService, JwtService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

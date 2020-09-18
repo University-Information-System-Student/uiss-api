@@ -1,7 +1,13 @@
 ﻿namespace UISS.RequestModels.Account
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class LoginRequestModel
     {
-        // TODO: Add properties For LoginRequestModel
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

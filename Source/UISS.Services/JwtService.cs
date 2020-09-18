@@ -19,7 +19,7 @@
             this.securitySettings = options.Value.Security;
         }
 
-        public string GenerateJwt(Guid id, string userName, string userRole)
+        public string GenerateJwt(string id, string userName, string userRole)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(this.securitySettings.SecretKey));
@@ -32,7 +32,7 @@
                 Expires = DateTime.UtcNow.AddHours(this.securitySettings.JwtLifetime),
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, id.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, id),
                     new Claim(ClaimTypes.Name, userName),
                     new Claim(ClaimTypes.Role, userRole)
                 })

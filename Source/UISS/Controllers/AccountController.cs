@@ -4,28 +4,62 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
 
+    using Security;
     using RequestModels.Account;
     using ResponseModels.Account;
     using Services.Contracts;
-    using UISS.Security;
+    using GlobalConstants;
 
     [ApiController]
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IUserService userService;
+        private readonly IJwtService jwtService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, IJwtService jwtService)
         {
             this.userService = userService;
+            this.jwtService = jwtService;
         }
 
         [HttpPost("Login")]
         public async Task<ActionResult<LoginResponseModel>> LoginAsync(LoginRequestModel request)
         {
-            // TODO: Implement LoginAsync Action
+            var response = new LoginResponseModel();
 
-            throw new System.NotImplementedException();
+            var user = await this.userService
+                .GetUserByUsernameAsync(request.Username);
+
+            if (Object.Equals(user, null))
+            {
+                response.Status = -1;
+                response.Message = "Invalid Username Or Password.";
+                return Ok(response);
+            }
+
+            var isValidPassword = PasswordHasher
+                .VerifyHashedPassword(user.HashedPassword, request.Password);
+
+            if (!isValidPassword)
+            {
+                response.Status = -1;
+                response.Message = "Invalid Username Or Password.";
+                return Ok(response);
+            }
+
+            var id = user.Id.ToString();
+            var username = request.Username;
+            var userRole = ((UserRole)user.UserRole).ToString();
+
+            var jwt = this.jwtService
+                .GenerateJwt(id, username, userRole);
+
+            response.Status = 1;
+            response.Message = "Success.";
+            response.Jwt = jwt;
+
+            return Ok(response);
         }
 
         [HttpPost("Register")]
