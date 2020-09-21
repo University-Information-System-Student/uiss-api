@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UISS.Data\UISS.Data.csproj" />
     <ProjectReference Include="..\UISS.GlobalConstants\UISS.GlobalConstants.csproj" />
+    <ProjectReference Include="..\UISS.Security\UISS.Security.csproj" />
     <ProjectReference Include="..\UISS.Services\UISS.Services.csproj" />
   </ItemGroup>
 
